@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import CountButton from "./CountButton";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
+
+class App extends Component {
+    state = {
+        count: 0
+    };
+    componentDidMount() {
+        alert("let's count number !");
+    }
+    countup = () => {
+        const currentCount = this.state.count;
+        this.setState({
+            count: currentCount + 1
+        });
+    }
+        countDown = () => {
+            const currentCount = this.state.count;
+            this.setState({
+                count: currentCount - 1
+            });
+        };
+        render() {
+            const {count} = this.state;
+            return (
+                <div className="wrapper">
+                    <p className="count">{count}</p>
+                    <div className="button-wrapper">
+                        <CountButton operator ="+" handleClick={this.countup} />
+                        <CountButton operator="-" handleClick={this.countDown} />
+                    </div>
+                </div>
+            );
+        }
+    }
 export default App;
